@@ -6,5 +6,4 @@
 ^-  tape
 =/  fv      (trim (add i:+<:(find-any:string word vowels) 1) word)
 =/  result  (head fv)
-=/
 result
