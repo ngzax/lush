@@ -78,7 +78,7 @@ module.exports = {
       pax: pax,
       sup: sup,
       txt: txt
-    }, "fora-comment", "fora", (function(_this) {
+    }, "talk-comment", "talk", (function(_this) {
       return function(err, res) {
         if (err == null) {
           return _this.clearData();
@@ -92,7 +92,7 @@ module.exports = {
       sup: sup,
       hed: hed,
       txt: txt
-    }, "fora-post", "fora", (function(_this) {
+    }, "talk-fora-post", "talk", (function(_this) {
       return function(err, res) {
         if (err == null) {
           _this.clearData();
@@ -470,8 +470,8 @@ extras = {
         "This page was made by Urbit. Feedback: ", a({
           href: "mailto:urbit@urbit.org"
         }, "urbit@urbit.org"), " ", a({
-          href: "https://twitter.com/urbit"
-        }, "@urbit")
+          href: "https://twitter.com/urbit_"
+        }, "@urbit_")
       ])
     ]);
   })
@@ -1623,48 +1623,52 @@ module.exports = recl({
   },
   render: function() {
     if ((urb.user == null) || urb.user !== urb.ship) {
-      return nav(
-        {className: "navbar panel"},
-        [
-          ul(
-            {className: "nav navbar-nav"},
-            [
-              li({className: 'nav-item pull-right'}, a({href: "/~~"}, "Log in"))
-            ])
-        ]);
+      return nav({
+        className: "navbar panel"
+      }, [
+        ul({
+          className: "nav navbar-nav"
+        }, [
+          li({
+            className: 'nav-item pull-right'
+          }, a({
+            href: "/~~"
+          }, "Log in"))
+        ])
+      ]);
     } else {
-      return nav(
-        {className: "navbar panel"},
-        [
-          ul({className: "nav navbar-nav"},
-          [
-            li(
-              {className: 'nav-item'},
-              a({href: "/~~/blog"}, "Blog")
-            ),
-            li(
-              {className: 'nav-item'},
-              a({href: "/~~/docs"}, "Docs")
-            ),
-            li(
-              {className: "nav-item"},
-              a({href: "/~~/dojo"}, "Dojo")
-            ),
-            li(
-              {className: "nav-item"},
-              a({href: "/~~/static"}, "Static")
-            ),
-            li(
-              {className: "nav-item"},
-              a({href: "/~~/talk"}, "Talk")
-            ),
-            li(
-              {className: 'nav-item pull-right'},
-              a({href: "/~/away"}, "Log out")
-            )
-          ])
-        ]
-      );
+      return nav({
+        className: "navbar panel"
+      }, [
+        ul({
+          className: "nav navbar-nav"
+        }, [
+          li(
+	    {className: 'nav-item'}, 
+	    a({href: "/~~/blog"}, "Blog")
+          ), 
+          li(
+	    {className: 'nav-item'}, 
+	    a({href: "/~~/docs"}, "Docs")
+          ), 
+	  li(
+	    {className: "nav-item"}, 
+	    a({href: "/~~/dojo"}, "Dojo")
+	  ), 
+          li(
+	    {className: "nav-item"}, 
+	    a({href: "/~~/static"}, "Static")
+	  ), 
+          li(
+	    {className: "nav-item"}, 
+	    a({href: "/~~/talk"}, "Talk")
+	  ), 
+	  li(
+	    {className: 'nav-item pull-right'}, 
+	    a({href: "/~/away"}, "Log out")
+	  )
+        ])
+      ]);
     }
   }
 });
@@ -2056,7 +2060,7 @@ Virtual = name("Virtual", function(arg) {
   }, function(str) {
     return str;
   }, function(arg1, key) {
-    var c, e, ga, gn, props, ref1;
+    var c, e, error, ga, gn, props, ref1;
     gn = arg1.gn, ga = arg1.ga, c = arg1.c;
     props = {
       key: key
@@ -2481,7 +2485,7 @@ module.exports = query({
     if (this.props.match) {
       comp = gn === this.props.match;
     } else {
-      comp = gn && gn[0] === 'h' && parseInt(gn[1]) !== (0/0);
+      comp = gn && gn[0] === 'h' && parseInt(gn[1]) !== NaN;
     }
     if (comp) {
       ga = _.clone(ga);
@@ -3169,9 +3173,8 @@ module.exports = {
     if (hor != null) {
       d.setHours(hor);
       d.setMinutes(min);
-      d.setSeconds(sec);
+      return d.setSeconds(sec);
     }
-    return d;
   },
   getKeys: function(kids, sortBy) {
     return _.map(this.sortKids(kids, sortBy), 'name');
@@ -3250,45 +3253,45 @@ module.exports = {
 /* global define */
 
 (function () {
-  'use strict';
+	'use strict';
 
-  var hasOwn = {}.hasOwnProperty;
+	var hasOwn = {}.hasOwnProperty;
 
-  function classNames () {
-    var classes = [];
+	function classNames () {
+		var classes = [];
 
-    for (var i = 0; i < arguments.length; i++) {
-      var arg = arguments[i];
-      if (!arg) continue;
+		for (var i = 0; i < arguments.length; i++) {
+			var arg = arguments[i];
+			if (!arg) continue;
 
-      var argType = typeof arg;
+			var argType = typeof arg;
 
-      if (argType === 'string' || argType === 'number') {
-        classes.push(arg);
-      } else if (Array.isArray(arg)) {
-        classes.push(classNames.apply(null, arg));
-      } else if (argType === 'object') {
-        for (var key in arg) {
-          if (hasOwn.call(arg, key) && arg[key]) {
-            classes.push(key);
-          }
-        }
-      }
-    }
+			if (argType === 'string' || argType === 'number') {
+				classes.push(arg);
+			} else if (Array.isArray(arg)) {
+				classes.push(classNames.apply(null, arg));
+			} else if (argType === 'object') {
+				for (var key in arg) {
+					if (hasOwn.call(arg, key) && arg[key]) {
+						classes.push(key);
+					}
+				}
+			}
+		}
 
-    return classes.join(' ');
-  }
+		return classes.join(' ');
+	}
 
-  if (typeof module !== 'undefined' && module.exports) {
-    module.exports = classNames;
-  } else if (typeof define === 'function' && typeof define.amd === 'object' && define.amd) {
-    // register as 'classnames', consistent with npm package name
-    define('classnames', [], function () {
-      return classNames;
-    });
-  } else {
-    window.classNames = classNames;
-  }
+	if (typeof module !== 'undefined' && module.exports) {
+		module.exports = classNames;
+	} else if (typeof define === 'function' && typeof define.amd === 'object' && define.amd) {
+		// register as 'classnames', consistent with npm package name
+		define('classnames', [], function () {
+			return classNames;
+		});
+	} else {
+		window.classNames = classNames;
+	}
 }());
 
 },{}],32:[function(require,module,exports){
