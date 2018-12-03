@@ -1626,42 +1626,30 @@ module.exports = recl({
       return nav({
         className: "navbar panel"
       }, [
-        ul({
-          className: "nav navbar-nav"
-        }, [
-          li({
-            className: 'nav-item pull-right'
-          }, a({
-            href: "/~~"
-          }, "Log in"))
-        ])
+        ul(
+          {className: "nav navbar-nav"},
+          [
+            li({className: 'nav-item pull-right'}, a({href: "/~~"}, "Log in"))
+          ]
+        )
       ]);
     } else {
-      return nav({
-        className: "navbar panel"
-      }, [
-        ul({
-          className: "nav navbar-nav"
-        }, [
-          li({
-            className: "nav-item"
-          }, a({
-            href: "/~~/talk"
-          }, "Talk")), li({
-            className: "nav-item"
-          }, a({
-            href: "/~~/dojo"
-          }, "Dojo")), li({
-            className: "nav-item"
-          }, a({
-            href: "/~~/static"
-          }, "Static")), li({
-            className: 'nav-item pull-right'
-          }, a({
-            href: "/~/away"
-          }, "Log out"))
-        ])
-      ]);
+      return nav(
+        {className: "navbar panel"},
+        [
+          ul(
+            {className: "nav navbar-nav"},
+            [
+              li({className: "nav-item"}, a({href: "/~~/blog"}, "Blog")),
+              li({className: "nav-item"}, a({href: "/~~/docs"}, "Docs")),
+              li({className: "nav-item"}, a({href: "/~~/dojo"}, "Dojo")),
+              li({className: "nav-item"}, a({href: "/~~/static"}, "Static")),
+              li({className: "nav-item"}, a({href: "/~~/talk"}, "Talk")),
+              li({className: 'nav-item pull-right'}, a({href: "/~/away"}, "Log out"))
+            ]
+          )
+        ]
+      );
     }
   }
 });
