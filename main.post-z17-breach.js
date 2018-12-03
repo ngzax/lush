@@ -1623,45 +1623,48 @@ module.exports = recl({
   },
   render: function() {
     if ((urb.user == null) || urb.user !== urb.ship) {
-      return nav({
-        className: "navbar panel"
-      }, [
-        ul({
-          className: "nav navbar-nav"
-        }, [
-          li({
-            className: 'nav-item pull-right'
-          }, a({
-            href: "/~~"
-          }, "Log in"))
-        ])
-      ]);
+      return nav(
+        {className: "navbar panel"},
+        [
+          ul(
+            {className: "nav navbar-nav"},
+            [
+              li({className: 'nav-item pull-right'}, a({href: "/~~"}, "Log in"))
+            ])
+        ]);
     } else {
-      return nav({
-        className: "navbar panel"
-      }, [
-        ul({
-          className: "nav navbar-nav"
-        }, [
-          li({
-            className: "nav-item"
-          }, a({
-            href: "/~~/talk"
-          }, "Talk")), li({
-            className: "nav-item"
-          }, a({
-            href: "/~~/dojo"
-          }, "Dojo")), li({
-            className: "nav-item"
-          }, a({
-            href: "/~~/static"
-          }, "Static")), li({
-            className: 'nav-item pull-right'
-          }, a({
-            href: "/~/away"
-          }, "Log out"))
-        ])
-      ]);
+      return nav(
+        {className: "navbar panel"},
+        [
+          ul({className: "nav navbar-nav"},
+          [
+            li(
+              {className: 'nav-item'},
+              a({href: "/~~/blog"}, "Blog")
+            ),
+            li(
+              {className: 'nav-item'},
+              a({href: "/~~/docs"}, "Docs")
+            ),
+            li(
+              {className: "nav-item"},
+              a({href: "/~~/dojo"}, "Dojo")
+            ),
+            li(
+              {className: "nav-item"},
+              a({href: "/~~/static"}, "Static")
+            ),
+            li(
+              {className: "nav-item"},
+              a({href: "/~~/talk"}, "Talk")
+            ),
+            li(
+              {className: 'nav-item pull-right'},
+              a({href: "/~/away"}, "Log out")
+            )
+          ])
+        ]
+      );
     }
   }
 });
@@ -3247,45 +3250,45 @@ module.exports = {
 /* global define */
 
 (function () {
-	'use strict';
+  'use strict';
 
-	var hasOwn = {}.hasOwnProperty;
+  var hasOwn = {}.hasOwnProperty;
 
-	function classNames () {
-		var classes = [];
+  function classNames () {
+    var classes = [];
 
-		for (var i = 0; i < arguments.length; i++) {
-			var arg = arguments[i];
-			if (!arg) continue;
+    for (var i = 0; i < arguments.length; i++) {
+      var arg = arguments[i];
+      if (!arg) continue;
 
-			var argType = typeof arg;
+      var argType = typeof arg;
 
-			if (argType === 'string' || argType === 'number') {
-				classes.push(arg);
-			} else if (Array.isArray(arg)) {
-				classes.push(classNames.apply(null, arg));
-			} else if (argType === 'object') {
-				for (var key in arg) {
-					if (hasOwn.call(arg, key) && arg[key]) {
-						classes.push(key);
-					}
-				}
-			}
-		}
+      if (argType === 'string' || argType === 'number') {
+        classes.push(arg);
+      } else if (Array.isArray(arg)) {
+        classes.push(classNames.apply(null, arg));
+      } else if (argType === 'object') {
+        for (var key in arg) {
+          if (hasOwn.call(arg, key) && arg[key]) {
+            classes.push(key);
+          }
+        }
+      }
+    }
 
-		return classes.join(' ');
-	}
+    return classes.join(' ');
+  }
 
-	if (typeof module !== 'undefined' && module.exports) {
-		module.exports = classNames;
-	} else if (typeof define === 'function' && typeof define.amd === 'object' && define.amd) {
-		// register as 'classnames', consistent with npm package name
-		define('classnames', [], function () {
-			return classNames;
-		});
-	} else {
-		window.classNames = classNames;
-	}
+  if (typeof module !== 'undefined' && module.exports) {
+    module.exports = classNames;
+  } else if (typeof define === 'function' && typeof define.amd === 'object' && define.amd) {
+    // register as 'classnames', consistent with npm package name
+    define('classnames', [], function () {
+      return classNames;
+    });
+  } else {
+    window.classNames = classNames;
+  }
 }());
 
 },{}],32:[function(require,module,exports){
