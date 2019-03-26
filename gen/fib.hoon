@@ -3,11 +3,12 @@
 ::::  /hoon/fib/gen
   ::
 |=  n=@ud                    :: def a gate that takes 1 arg sample
+^-  (list @ud)               :: returns a list of unsigned decimals
 =/  a=@ud  0                 :: a is the first fib number
 =/  b=@ud  1                 :: b is the second
 =/  c=@ud  1                 :: loop counter
 |-                           :: Produce a trap (a core with one arm $) and evaluate it.
-^-  (list @)                 :: cast our return to a list of atoms
+^-  (list @ud)               :: returns a list of unsigned decimals
 ?.  (lte c n)                :: loop until counter reaches n
   ~                          :: end
 :-  a                        :: add a new cell with the number
