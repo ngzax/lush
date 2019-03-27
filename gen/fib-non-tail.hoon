@@ -13,10 +13,11 @@
 --
 |=  n=@ud
 ^-  (list @ud)
-=/  c=@ud  1
+=/  count=@ud  1
 |-
-^-  (list @ud)
-?:  (gth c n)
+?:  (gth count n)
   ~
-:-  (fibo c)
-$(c +(c))
+:-  (fibo count)
+%=  $
+  count  +(count)
+==
