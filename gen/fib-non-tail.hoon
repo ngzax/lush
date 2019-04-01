@@ -9,7 +9,7 @@
     0
   ?:  =(a 2)
     1
-  (add (fibo (dec a)) (fibo (dec (dec a))))
+  (add (fibo (dec a)) (fibo (sub a 2)))
 --
 |=  n=@ud
 ^-  (list @ud)
