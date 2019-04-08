@@ -25,11 +25,11 @@
   ==
 ++  deal-card
   |=  [a=@ud b=@ud]
-  ^-  tape
-  "{<(snag a ranks)>} of {<(snag b suits)>}"
+  ^-  [@tas @tas]
+  :-  (snag a ranks)  (snag b suits)
 ++  deal-hand
   |=  [y=@ud eny=@uv]
-  ^-  (list tape)
+  ^-  (list [@tas @tas])
   =/  count=@  1
   =/  rng  ~(. og eny)
   |-
@@ -43,7 +43,7 @@
 :-  %say
 |=  [[* eny=@uv *] [[x=@ y=@] ~] *]
 :-  %noun
-^-  (list (list tape))
+^-  (list (list [@tas @tas]))
 =/  count=@  1
 |-
 =.  eny  (add eny 1)
