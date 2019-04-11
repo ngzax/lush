@@ -23,21 +23,21 @@
       %hearts
       %spades
   ==
-++  deck
-  :: This is all valid cards (rank/suit combinations)
-  =|  deck=(list [@tas @tas])
-  |-
-  ^-  (list [@tas @tas])
-  ?~  suits
-    deck
-  %=  $
-    suits  +:suits
-    deck  |-
-            ^-  (list [@tas @tas])
-            ?~  ranks
-              deck
-            [[-:ranks -:suits] $(ranks +:ranks)]
-  ==
+:: ++  deck
+::   :: This is all valid cards (rank/suit combinations)
+::   =|  deck=(list [@tas @tas])
+::   |-
+::   ^-  (list [@tas @tas])
+::   ?~  suits
+::     deck
+::   %=  $
+::     suits  +:suits
+::     deck  |-
+::             ^-  (list [@tas @tas])
+::             ?~  ranks
+::               deck
+::             [[-:ranks -:suits] $(ranks +:ranks)]
+::   ==
 ++  deal-card
   |=  [a=@ud b=@ud]
   ^-  [@tas @tas]
