@@ -11,16 +11,14 @@
 ::  and return a json cask with the pokemon's name
 ::
 ^-  (sole-request:sole (cask json))
-:: ^-  cord
 =/  url  "https://pokeapi.co/api/v2/pokemon/{<id>}"
 %+  curl  (scan url auri:de-purl:html)
-|=  hit/httr:eyre
-?~  r.hit  !!
-=/  my-json  (de-json:html q.u.r.hit)
+|=  response=httr:eyre
+?~  r.response  !!
+=/  my-json  (de-json:html q.u.r.response)
 ?~  my-json  !!
-=,  dejs:format
 %+  produce  %json
-%.  %weight
+%.  %name
 %~  got  by
-%-  (om same)
+%-  (om:dejs:format same)
 u.my-json
