@@ -2,6 +2,5 @@
 ::
 ::::  /hoon/add/gen
   ::
-/?    310
-|=  [a=@ud b=@ud]
-(add a b)
+|=  a=*
+a
