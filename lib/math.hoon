@@ -1,6 +1,4 @@
 |%
-:: Tail-recursive factorial
-::
 ++  calc
   |_  b=@ud
   ++  addition        |=(a=@ (add a b))
@@ -9,16 +7,18 @@
   ++  subtraction     |=(a=@ (sub a b))
   --
 ++  factorial
+:: Tail-recursive factorial
+::
   |=  n=@ud
   =/  t=@ud  1
   |-
   ?:  =(n 1)
       t
   $(n (dec n), t (mul t n))
+++  lucky-primes
 ::
 :: Euler's Lucky Primes
 ::
-++  lucky-primes
   |=  n=@ud
   ^-  (list @ud)
   =/  k      1
@@ -34,4 +34,25 @@
     ==
   ~&  "That is not a lucky number."
   res
+++  sub
+::  difference
+::
+  |=  [a=@ b=@]
+  ^-  @
+  ?.  =(0 b)
+    $(a (dec a), b (dec b))
+  a
+++  symtoint
+:: convert a symbol containing the name of an integer
+:: into the integer itself
+::
+  |=  sym=?(%one %two %three %four %five)
+  ^-  @ud
+  ?-  sym
+    %one    1
+    %two    2
+    %three  3
+    %four   4
+    %five   5
+==
 --
