@@ -1,46 +1,29 @@
-=>
+|=  n=@ud
+^-  tape
+=<
+~(ram re [%rose ["|" "(" ")"] (fizzbuzz n)])
 |%
-++  fizz
-|=  end=@ud
-=/  count  1
+++  fizzer
+|=  n=@ud
+^-  tank
 |-
-  ^-  (list ?(@ud tape))
-  ?:  (gth count end)
-     ~
-  :-
-    ?:  =(0 (mod count 3))
-      "Fizz"
-    count
-$(count (add 1 count))
-++  buzz
-|=  end=@ud
-=/  count  1
-|-
-  ^-  (list ?(@ud tape))
-  ?:  (gth count end)
-     ~
-  :-
-    ?:  =(0 (mod count 5))
-      "Buzz"
-    count
-$(count (add 1 count))
+?:  =(0 (mod n 15))
+  leaf+"FizzBuzz"
+?:  =(0 (mod n 5))
+  leaf+"Buzz"
+?:  =(0 (mod n 3))
+  leaf+"Fizz"
+leaf+(scow %ud n)
 ++  fizzbuzz
 |=  end=@ud
-=/  count  1
+^-  (list tank)
+=/  count   1
+=/  result  *(list tank)
 |-
-  ^-  (list ?(@ud tape))
-  ?:  (gth count end)
-     ~
-  :-
-    ?:  =(0 (mod count 15))
-      "FizzBuzz"
-    ?:  =(0 (mod count 5))
-      "Buzz"
-    ?:  =(0 (mod count 3))
-      "Fizz"
-    count
-$(count (add 1 count))
+?:  (gth count end)
+  result
+%=  $
+  result  (weld result ~[(fizzer count)])
+  count   (add 1 count)
+==
 --
-|=  n=@ud
-^-  (list ?(@ud tape))
-(fizzbuzz n)
