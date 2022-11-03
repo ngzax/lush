@@ -12,9 +12,10 @@
 |%
 ++  calc
   |_  b=@ud
-  ++  addition        |=(a=@ud ..addition(b (add b a)))
-  ++  division        |=(a=@ud ..division(b (div b a)))
-  ++  multiplication  |=(a=@ud ..multiplication(b (mul b a)))
-  ++  subtraction     |=(a=@ud ..subtraction(b (sub b a)))
+  +*  this  .
+  ++  addition        |=(a=@ud this(b (add b a)))
+  ++  division        |=(a=@ud this(b (div b a)))
+  ++  multiplication  |=(a=@ud this(b (mul b a)))
+  ++  subtraction     |=(a=@ud this(b (sub b a)))
   --
 --
