@@ -1,10 +1,10 @@
 |%
 ++  calc
   |_  b=@ud
-  ++  addition        |=(a=@ (add a b))
-  ++  division        |=(a=@ (div a b))
-  ++  multiplication  |=(a=@ (mul a b))
-  ++  subtraction     |=(a=@ (sub a b))
+  ++  addition        |=(a=@ (add b a))
+  ++  division        |=(a=@ (div b a))
+  ++  multiplication  |=(a=@ (mul b a))
+  ++  subtraction     |=(a=@ (sub b a))
   --
 ++  factorial
 :: Tail-recursive factorial
