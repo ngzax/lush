@@ -26,7 +26,10 @@
   =.  state  [%0 *(list @)]  [~ this]
 ++  on-save   on-save:default
 ++  on-load   on-load:default
-++  on-poke   on-poke:default
+++  on-poke
+  |=  =cage
+  ~&  >  "you poked {<dap.bowl>} with mark {<p.cage>}"
+  !!
 ++  on-arvo   on-arvo:default
 ++  on-watch  on-watch:default
 ++  on-leave  on-leave:default
