@@ -28,6 +28,7 @@
 ++  on-load   on-load:default
 ++  on-poke
   |=  =cage
+::OR...  |=  [=mark =vase]
   ~&  >  "you poked {<dap.bowl>} with mark {<p.cage>}"
   !!
 ++  on-arvo   on-arvo:default
