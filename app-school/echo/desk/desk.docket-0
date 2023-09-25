@@ -1,5 +1,5 @@
-:~  title+'echo'
-    info+'An Urbit app that does great things'
+:~  title+'%echo'
+    info+'A stack of numbers'
     color+0x2e.4347
     glob-http+['https://bootstrap.urbit.org/glob-0v5.hurm4.ejod5.ngg9h.iub9i.n1j7o.glob' 0v5.hurm4.ejod5.ngg9h.iub9i.n1j7o]
     base+'echo'
