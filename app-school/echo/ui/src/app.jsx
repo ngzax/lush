@@ -24,6 +24,7 @@ function reducer(state, action) {
 export function App() {
   const [state, dispatch] = useReducer(reducer, [])
   const [inputValue, setInputValue] = useState("")
+  const [shipName, setShipName] = useState("")
 
   useEffect(() => {
     async function init() {
@@ -47,6 +48,7 @@ export function App() {
   const push = () => {
     const val = parseInt(inputValue)
     if (isNaN(val)) return
+    if (`~${window.ship}` != shipName) return
     api.poke({
       app: 'echo',
       mark: 'echo-action',
@@ -56,6 +58,7 @@ export function App() {
   }
 
   const pop = () => {
+    if (`~${window.ship}` != shipName) return
     api.poke({
       app: 'echo',
       mark: 'echo-action',
@@ -65,15 +68,22 @@ export function App() {
 
   return (
     <main className="flex flex-col items-center justify-center min-h-screen">
-      <input style={{ width: 200 }} className='border' type='text' value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
-      <div>
-        <button onClick={() => push()} style={{ width: 100 }} className='border p-2 text-black-400'>Push</button>
-        <button onClick={() => pop()} style={{ width: 100 }} className='border p-2 text-black-400'>Pop</button>
-        <p>Our stack</p>
-        {state.map((eachValue, index) => {
-          return (<li key={index}>{eachValue}</li>)
-        })}
-      </div>
+      <form>
+        <div>
+          <label>Ship:</label><input style={{ width: 200 }} className='border' type='text' value={shipName} onChange={(e) => setShipName(e.target.value)} />
+        </div>
+        <div>
+          <label>Value:</label><input style={{ width: 200 }} className='border' type='text' value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
+        </div>
+        <div>
+          <button onClick={() => push()} style={{ width: 100 }} className='border p-2 text-black-400'>Push</button>
+          <button onClick={() => pop()} style={{ width: 100 }} className='border p-2 text-black-400'>Pop</button>
+          <p>Our stack</p>
+          {state.map((eachValue, index) => {
+            return (<li key={index}>{eachValue}</li>)
+          })}
+        </div>
+      </form>
     </main>
   )
 }
