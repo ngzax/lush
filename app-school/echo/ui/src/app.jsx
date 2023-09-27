@@ -52,7 +52,7 @@ export function App() {
     api.poke({
       app: 'echo',
       mark: 'echo-action',
-      json: { push: { target: `~${window.ship}`, value: val } }
+      json: { push: { target: shipName, value: val } }
     })
     setInputValue("")
   }
@@ -62,7 +62,7 @@ export function App() {
     api.poke({
       app: 'echo',
       mark: 'echo-action',
-      json: { pop: `~${window.ship}` }
+      json: { pop: shipName }
     })
   }
 
