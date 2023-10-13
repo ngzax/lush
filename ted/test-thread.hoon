@@ -5,7 +5,7 @@
 =/  m  (strand ,vase)
 ^-  form:m
 |=  strand-input:strand
-?+    q.arg  [~ %fail %wasnt-foo ~]
-    %foo
-  [~ %done arg]
-==
+?+  q.arg  [~ %fail %wasnt-foo ~]
+  %foo
+    [~ %done arg]
+  ==
