@@ -30,10 +30,16 @@
   =.  state  [%0 *(map @tas json)]
   `this
 ::
-++  on-save   on-save:def-agent
-:: ++  on-save  !>(state)
+:: ++  on-save   on-save:def-agent
+++  on-save
+  ^-  vase
+  !>(state)
 ::
-++  on-load   on-load:def-agent
+:: ++  on-load   on-load:def-agent
+++  on-load
+  |=  old-state=vase
+  ^-  (quip card _this)
+  [~ this(state !<(versioned-state old-state))]
 ::
 ++  on-poke
   |=  [=mark =vase]
@@ -75,7 +81,7 @@
         %thread-done
           =/  res       !<(json q.cage.sign)
           =/  jsn       (en-json:html res)
-          =.  pokemons.state  `(map @tas json)`(~(put by pokemons.state) %test res)
+          =.  pokemons.state  `(map @tas json)`(~(put by pokemons.state) %test (pairs:enjs:format ~[['a' b+%.y]]))
           %-  (slog leaf+"Result JSON: {jsn}" ~)  `this
         ==
     ==
