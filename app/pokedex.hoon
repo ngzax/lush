@@ -51,6 +51,7 @@
       =/  tid         `@ta`(cat 3 'thread_' (scot %uv (sham eny.bowl)))
       =/  ta-now      `@ta`(scot %da now.bowl)
       =/  start-args  [~ `tid byk.bowl(r da+now.bowl) p.q.vase !>(q.q.vase)]
+      ~&  >  "got poked from {<src.bowl>} with val: {<start-args>}"
       :-
         :~
           [%pass /thread/[ta-now] %agent [our.bowl %spider] %watch /thread-result/[tid]]
@@ -79,10 +80,13 @@
           %-  (slog leaf+"Thread failed: {(trip p.err)}" q.err)
           `this
         %thread-done
-          =/  res       !<(json q.cage.sign)
-          =/  jsn       (en-json:html res)
-          =.  pokemons.state  `(map @tas json)`(~(put by pokemons.state) %test (pairs:enjs:format ~[['a' b+%.y]]))
-          %-  (slog leaf+"Result JSON: {jsn}" ~)  `this
+          =/  res             !<  (map @tas json)  q.cage.sign
+          =/  pok             `@tas`(head (scag 1 ~(tap in ~(key by res))))
+          =/  jsn             `json`(head (scag 1 ~(val by res)))
+          =/  jsnt            (en-json:html jsn)
+          =.  pokemons.state  `(map @tas json)`(~(put by pokemons.state) pok jsn)
+          %-  (slog leaf+"Result JSON: {jsnt}" ~)
+          `this
         ==
     ==
   ==
