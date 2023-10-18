@@ -9,9 +9,9 @@
 :: ABOVE THIS LINE IS BOILERPLATE
 =/  poke  !<(@tas arg)                    :: re-apply the expected @tas type to the unit arg. call it poke.
 ?~  poke  (strand-fail %no-pokemon ~)            :: fail if poke is ~
-=/  base-url
-    "https://pokeapi.co/api/v2/pokemon/"
+=/  base-url  "https://pokeapi.co/api/v2/pokemon/"
 =/  url  (weld base-url (cass (trip poke)))
+::
 ;<  pokeinfo=json  bind:m  (fetch-json:strandio url)
-%-  (slog leaf+"processed {<poke>}" ~)
-(pure:m !>(`(map @tas json)`(map poke pokeinfo)))
+=/  res=(map @tas json)  (malt ~[[poke pokeinfo]])
+(pure:m !>(res))
