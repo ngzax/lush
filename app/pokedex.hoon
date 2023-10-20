@@ -23,19 +23,16 @@
 +*  this  .  def-agent
   ~(. (default-agent this %|) bowl)
 ::
-:: ++  on-init   on-init:def-agent
 ++  on-init
   ^-  (quip card _this)
   ~&  >  '%pokedex initialized successfully'
   =.  state  [%0 *(map @tas json)]
   `this
 ::
-:: ++  on-save   on-save:def-agent
 ++  on-save
   ^-  vase
   !>(state)
 ::
-:: ++  on-load   on-load:def-agent
 ++  on-load
   |=  old-state=vase
   ^-  (quip card _this)
@@ -44,26 +41,36 @@
 ++  on-poke
   |=  [=mark =vase]
   ^-  (quip card _this)
-  ?+    mark  (on-poke:def-agent mark vase)
-      %noun
-    ?+  q.vase  (on-poke:def-agent mark vase)
+  ?+  mark
+      (on-poke:def-agent mark vase)  :: Default -> Pass unexpected marks to default-agent, which just crashes
+    %noun
+      ?+  q.vase
+          (on-poke:def-agent mark vase)
         (pair term term)
-      =/  tid         `@ta`(cat 3 'thread_' (scot %uv (sham eny.bowl)))
-      =/  ta-now      `@ta`(scot %da now.bowl)
-      =/  start-args  [~ `tid byk.bowl(r da+now.bowl) p.q.vase !>(q.q.vase)]
-      ~&  >  "got poked from {<src.bowl>} with val: {<start-args>}"
-      :-
-        :~
-          [%pass /thread/[ta-now] %agent [our.bowl %spider] %watch /thread-result/[tid]]
-          [%pass /thread/[ta-now] %agent [our.bowl %spider] %poke %spider-start !>(start-args)]
-        ==
-      this
-    ==
+          =/  tid         `@ta`(cat 3 'thread_' (scot %uv (sham eny.bowl)))
+          =/  ta-now      `@ta`(scot %da now.bowl)
+          =/  pok         q.q.vase  :: The name of the pokemon to retrieve
+          =/  start-args  [~ `tid byk.bowl(r da+now.bowl) p.q.vase !>(pok)]
+          =/  cache-jsn  (~(get by pokemons.state) pok)
+          ?~  cache-jsn
+            :: the pokemon was not in the cache, retrieve it...
+            :-
+              :~
+                [%pass /thread/[ta-now] %agent [our.bowl %spider] %watch /thread-result/[tid]]
+                [%pass /thread/[ta-now] %agent [our.bowl %spider] %poke %spider-start !>(start-args)]
+              ==
+            this
+          :: the pokemon was in the cache, return it.
+          =/  jsnt  (en-json:html (need cache-jsn))
+          ~&  >  "Pokemon JSON: {jsnt}"
+          `this
+      ==
   ==
 ++  on-agent
   |=  [=wire =sign:agent:gall]
   ^-  (quip card _this)
-  ?+  -.wire  (on-agent:def-agent wire sign)
+  ?+  -.wire
+      (on-agent:def-agent wire sign)
     %thread
       ?+  -.sign  (on-agent:def-agent wire sign)
         %poke-ack
@@ -83,9 +90,10 @@
           =/  res             !<  (map @tas json)  q.cage.sign
           =/  pok             `@tas`(head (scag 1 ~(tap in ~(key by res))))
           =/  jsn             `json`(head (scag 1 ~(val by res)))
-          =/  jsnt            (en-json:html jsn)
+          :: Put the return json into our cache.
           =.  pokemons.state  `(map @tas json)`(~(put by pokemons.state) pok jsn)
-          %-  (slog leaf+"Result JSON: {jsnt}" ~)
+          =/  jsnt            (en-json:html jsn)
+          %-  (slog leaf+"Pokemon JSON: {jsnt}" ~)
           `this
         ==
     ==
