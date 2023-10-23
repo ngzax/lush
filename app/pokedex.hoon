@@ -1,3 +1,7 @@
+::
+:::: Pokemon Fetcher
+  :: Built for App School Lesson 5 Oct. 2023
+  ::
 /-  pokedex
 /+  default-agent, dbug
 ::

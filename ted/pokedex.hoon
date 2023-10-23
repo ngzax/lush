@@ -1,3 +1,7 @@
+::
+:::: Pokemon Fetcher
+  :: Built for App School Lesson 5 Oct. 2023
+  ::
 /-  spider                                       :: /sur/spider
 /+  strandio                                     :: /lib/strandio
 =,  strand=strand:spider
