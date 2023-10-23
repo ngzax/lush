@@ -1,0 +1,3 @@
+|%
++$  pokemons  (map @tas json)
+--
